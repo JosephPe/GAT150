@@ -44,10 +44,14 @@ namespace anthemum
 
 		SDL_Rect dest;
 
-		dest.x = x;
-		dest.x = y;
-		dest.x = x;
-		dest.x = y;
+		dest.x = (float)position.x;
+		dest.y = (float)position.y;
+		
+		dest.x = size.x;
+		dest.x = size.y;
+		
+
+		SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, angle, nullptr, SDL_FLIP_NONE);
 	}
 
 	void Renderer::DrawLine(float x1, float y1, float x2, float y2)

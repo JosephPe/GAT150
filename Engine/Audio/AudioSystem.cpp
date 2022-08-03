@@ -1,4 +1,5 @@
 #include "AudioSystem.h"
+#include "Core/Logger.h"
 #include <fmod.hpp>
 
 void anthemum::AudioSystem::Initialize()
@@ -32,6 +33,11 @@ void anthemum::AudioSystem::AddAudio(const std::string& name, const std::string&
 	{
 		FMOD::Sound* sound = nullptr;
 		m_fmodSystem->createSound(filename.c_str(), FMOD_DEFAULT, 0, &sound);
+
+		if (sound == nullptr)
+		{
+			LOG("Error creating sound %s.", filename.c_str());
+		}
 		m_sounds[name] = sound;
 	}
 }
@@ -39,6 +45,12 @@ void anthemum::AudioSystem::AddAudio(const std::string& name, const std::string&
 void anthemum::AudioSystem::PlayAudio(const std::string& name, bool loop)
 {
 	auto iter = m_sounds.find(name);
+
+	if (iter == m_sounds.end())
+	{
+		LOG("Error could not find sound %s.", name.c_str());
+	}
+
 	if (iter != m_sounds.end())
 	{
 

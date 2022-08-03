@@ -4,7 +4,7 @@
 
 int main()
 {	
-anthemum::InitializeMemory();
+	anthemum::InitializeMemory();
 
 	//std::cout << "hello world";
 
@@ -18,7 +18,8 @@ anthemum::InitializeMemory();
 	anthemum::g_renderer.CreateWindow("Neumont", 800, 600);
 	anthemum::g_renderer.SetClearColor(anthemum::Color{ 50, 50, 155, 255 });
 
-	std::shared_ptr<anthemum:Texture>
+	std::shared_ptr<anthemum::Texture> texture = std::make_shared<anthemum::Texture>();
+	texture->Create(anthemum::g_renderer, "sf2.bmp");
 
 	bool quit = false;
 	while (!quit)
@@ -33,7 +34,7 @@ anthemum::InitializeMemory();
 
 
 		anthemum::g_renderer.BeginFrame();
-
+		anthemum::g_renderer.Draw(texture, { 400, 300 }, 0);
 		//game.Draw(anthemum::g_renderer);
 		anthemum::g_audioSystem.Update();
 
