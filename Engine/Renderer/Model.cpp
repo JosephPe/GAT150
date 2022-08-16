@@ -1,5 +1,10 @@
 #include "Model.h"
-#include "../Core/File.h"
+#include "Core/File.h"
+#include "Core/Logger.h"
+#include "Math/Transform.h"
+#include "Math/Vector2.h"
+#include "Math/MathUtils.h"
+#include "Framework/Actor.h"
 #include <sstream>
 #include <iostream>
 
@@ -11,13 +16,19 @@ namespace anthemum
 		m_radius = CalculateRadius();
 	}
 
-	void Model::Draw(Renderer& renderer, Vector2 position, float angle, float scale)
-	{/*
-		anthemum::Color color{};
-		color.r = anthemum::random(256);
-		color.g = anthemum::random(256);
-		color.b = anthemum::random(256);
-		color.a = 256;*/
+	bool Model::Create(const std::string& filename, void* data)
+	{
+		if (!Load(filename))
+		{
+			LOG("Error could not load model %s", filename.c_str());
+			return false;
+		}
+
+		return true;
+	}
+
+	void Model::Draw(Renderer& renderer, const Vector2 position, float angle, const Vector2& scale = Vector2{ 1, 1 })
+	{
 
 		for (int i = 0; i < m_points.size() - 1; i++)
 		{
@@ -27,13 +38,29 @@ namespace anthemum
 			renderer.DrawLine(p1, p2, m_color);
 		}
 	}
-	void Model::Load(const std::string& filename)
+	void Model::Draw(Renderer& renderer, const Transform& transform)
+	{
+		Matrix3_3 mx = transform.matrix;
+		//if (m_points.size() == 0) return;
+
+		for (int i = 0; i < m_points.size() - 1; i++)
+		{
+			anthemum::Vector2 p1 = mx * m_points[i];
+			anthemum::Vector2 p2 = mx * m_points[i + 1];
+
+			renderer.DrawLine(p1, p2, m_color);
+		}
+	}
+	bool Model::Load(const std::string& filename)
 	{
 
 		std::string buffer;
 
-		anthemum::ReadFile(filename, buffer);
-
+		if (!anthemum::ReadFile(filename, buffer))
+		{
+			LOG("Error could not load model %s", filename.c_str());
+			return false;
+		}
 
 		//read color
 		std::istringstream stream(buffer);
@@ -54,7 +81,9 @@ namespace anthemum
 
 			m_points.push_back(point);
 		}
+		return true;
 	}
+
 	float Model::CalculateRadius()
 	{
 		float radius = 0;

@@ -12,6 +12,7 @@ namespace anthemum
 		Font(const std::string& filename, int fontSize);
 		~Font();
 
+		bool Create(const std::string& filename, void* date = nullptr);
 		void Load(const std::string& filename, int fontSize);
 
 		friend class Text;

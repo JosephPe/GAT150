@@ -1,5 +1,7 @@
 #pragma once
 #include <cstdint>
+#include <iostream>
+#include <string>
 
 namespace anthemum
 {
@@ -14,35 +16,17 @@ namespace anthemum
 		uint8_t b;
 		uint8_t a;
 
+		static const Color white;
+		static const Color black;
+		static const Color red;
+		static const Color green;
+		static const Color blue;
+		static const Color trueYellow;
+		static const Color deepMagenta;
+
+
 		friend std::istream& operator >> (std::istream& stream, Color& color);
 	}; 
-	inline std::istream& operator >> (std::istream& stream, Color& color)
-	{
-		std::string line;
-		std::getline(stream, line);
-
-
-		// line = "{ ##, ##, ## }"
-		// color = 0..1 -> 0-255
-
-		std::string str;
-		str = line.substr(line.find("{") + 1, line.find(",") - line.find("{") - 1);
-		color.r = (uint8_t)(stof(str) * 255);
-
-		line = line.substr(line.find(",") + 1);
-		// line = " ##, ## }"
-		str = line.substr(0, line.find(","));
-		color.g = (uint8_t)(stof(str) * 255);
-
-		line = line.substr(line.find(",") + 1);
-		// line = " ## }"
-		str = line.substr(0, line.find("}"));
-		color.b = (uint8_t)(stof(str) * 255);
-
-
-
-		color.a = 255;
-
-		return stream;
-	}
+	
+	std::istream& operator >> (std::istream& stream, Color& color);
 }
