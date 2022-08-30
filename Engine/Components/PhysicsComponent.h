@@ -9,13 +9,18 @@ namespace anthemum
 	public:
 		PhysicsComponent();
 
+		CLASS_DECLARATION(PhysicsComponent)
 
 		void Update() override;
-		void ApplyForce(const Vector2 force) { m_acceleration += force; };
+		virtual void ApplyForce(const Vector2 force) { acceleration += force; };
 
+		// Inherited via ISerializable
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 	public:
-		Vector2 m_velocity;
-		Vector2 m_acceleration;
-		float m_damping = 1;
+		Vector2 velocity;
+		Vector2 acceleration;
+		float damping = 1;
+
 	};
 }

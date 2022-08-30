@@ -10,6 +10,7 @@ namespace anthemum
 
 	void ResourceManager::Shutdown()
 	{
+		m_resources.clear();
 	}
 
 }

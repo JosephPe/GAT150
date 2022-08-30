@@ -12,10 +12,35 @@ namespace anthemum
 		if (m_texture) SDL_DestroyTexture(m_texture);
 	}
 
-	bool Texture::Create(const std::string& filename, void* data)
+	bool Texture::Create(std::string filename, ...)
 	{
-		Renderer* renderer = static_cast<Renderer*>(data);
-		return Create(*renderer, filename);
+		va_list args;
+
+		va_start(args, filename);
+
+		Renderer& renderer = va_arg(args, Renderer);
+
+		va_end(args);
+
+		//Renderer* renderer = static_cast<Renderer*>(data);
+		//return Create(*renderer, filename);
+		return Create(renderer, filename);
+	}
+
+	bool Texture::CreateFromSurface(SDL_Surface* surface, Renderer& renderer)
+	{
+		if (m_texture) SDL_DestroyTexture(m_texture);
+
+		m_texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
+		SDL_FreeSurface(surface);
+
+		if (m_texture = nullptr)
+		{
+			LOG(SDL_GetError());
+			return false;
+		}
+
+		return true;
 	}
 
 	bool Texture::Create(Renderer& renderer, const std::string& filename)

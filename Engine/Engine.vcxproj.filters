@@ -33,6 +33,12 @@
     <Filter Include="Sources\Resource">
       <UniqueIdentifier>{4fc96701-e3c7-401f-b3f1-f06f139291be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Serialization">
+      <UniqueIdentifier>{3d9a3b79-e800-4a4c-814b-47d697ddc122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Physics">
+      <UniqueIdentifier>{8c3b53cc-b90e-4355-ad57-96b2fa15ff0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -40,9 +46,6 @@
     </ClCompile>
     <ClCompile Include="Core\Memory.cpp">
       <Filter>Sources\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Sources\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Input\InputSystem.cpp">
       <Filter>Sources\Input</Filter>
@@ -69,9 +72,6 @@
       <Filter>Sources\Audio</Filter>
     </ClCompile>
     <ClCompile Include="Renderer\Font.cpp">
-      <Filter>Sources\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Text.cpp">
       <Filter>Sources\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Core\Logger.cpp">
@@ -109,6 +109,51 @@
     </ClCompile>
     <ClCompile Include="Renderer\Texture.cpp">
       <Filter>Sources\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Serialization\json.cpp">
+      <Filter>Sources\Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Renderer.cpp">
+      <Filter>Sources\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Transform.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpritesAnimComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\RenderComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Component.cpp">
+      <Filter>Sources\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Text.cpp">
+      <Filter>Sources\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\RBPhysicsComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PhysicsSystem.cpp">
+      <Filter>Sources\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CollisionComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio\AudioChannel.cpp">
+      <Filter>Sources\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\ContactListener.cpp">
+      <Filter>Sources\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\TextComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\TilemapComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\EventManager.cpp">
+      <Filter>Sources\Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -163,9 +208,6 @@
     <ClInclude Include="Renderer\Font.h">
       <Filter>Sources\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>Sources\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Game.h">
       <Filter>Sources\Framework</Filter>
     </ClInclude>
@@ -215,6 +257,51 @@
       <Filter>Sources\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Core\Singleton.h">
+      <Filter>Sources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Serialization\json.h">
+      <Filter>Sources\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Serialization\Serializable.h">
+      <Filter>Sources\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Rect.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpritesAnimComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Text.h">
+      <Filter>Sources\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RBPhysicsComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsSystem.h">
+      <Filter>Sources\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Collision.h">
+      <Filter>Sources\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CollisionComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\AudioChannel.h">
+      <Filter>Sources\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\ContactListener.h">
+      <Filter>Sources\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\TextComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\TilemapComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Event.h">
+      <Filter>Sources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\EventManager.h">
       <Filter>Sources\Framework</Filter>
     </ClInclude>
   </ItemGroup>

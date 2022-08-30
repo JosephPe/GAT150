@@ -2,13 +2,16 @@
 #include "../Math/Vector2.h"
 #include "../Math/Color.h"
 #include "Texture.h"
+#include "Math/Rect.h"
 
 struct SDL_Renderer;
 struct SDL_Window;
 
 namespace anthemum
 {
+	class Texture;
 	struct Transform;
+	struct Rect;
 
 	class Renderer
 	{
@@ -27,6 +30,7 @@ namespace anthemum
 
 		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle = 0, const Vector2& scale = Vector2{ 1, 1 }, const Vector2& registration = Vector2{ 0.5f, 0.5f});
 		void Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& registration = Vector2{ 0.5f, 0.5f });
+		void Draw(std::shared_ptr<Texture> texture, const Rect& source,const Transform& transform, const Vector2& registration = Vector2{ 0.5f, 0.5f });
 		
 		void DrawLine(float x1, float y1, float x2, float y2);
 		void DrawLine(const Vector2& v1, const Vector2& v2, const Color& color);

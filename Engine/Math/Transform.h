@@ -2,16 +2,20 @@
 #include "Vector2.h"
 #include "Matrix3_3.h"
 #include "MathUtils.h"
+#include "Serialization/Serializable.h"
 
 namespace anthemum
 {
-	struct Transform
+	struct Transform : public ISerializable
 	{
 		Vector2 position;
 		float rotation{ 0 };
 		Vector2 scale{ 1, 1 };
 		
 		Matrix3_3 matrix;
+
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
 		void Update()
 		{
@@ -39,5 +43,8 @@ namespace anthemum
 			return { mxTranslation * mxRotation * mxScale };
 		}
 		
+
+		// Inherited via ISerializable
+
 	};
 }

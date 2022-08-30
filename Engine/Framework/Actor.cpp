@@ -1,10 +1,36 @@
 #include "Actor.h"
+#include "Factory.h"
 #include <Components/RenderComponent.h>
 
 namespace anthemum
 {
+
+	Actor::Actor(const Actor& other)
+	{
+		name = other.name;
+		tag = other.tag;
+		m_transform = other.m_transform;
+
+		m_scene = other.m_scene;
+
+		for (auto& component : other.m_components)
+		{
+			auto clone = std::unique_ptr<Component>((Component*)component->Clone().release());
+			AddComponent(std::move(clone));
+		}
+	}
+
+
+	void Actor::Initialize()
+	{
+		for (auto& component : m_components) { component->Initialize(); }
+		for (auto& child : m_children) { child->Initialize(); }
+	}
+
 	void Actor::Update()
 	{
+		if (!active) return;
+
 		for (auto& component : m_components)
 		{
 			component->Update();
@@ -45,6 +71,38 @@ namespace anthemum
 	{
 		component->m_owner = this;
 		m_components.push_back(std::move(component));
+	}
+
+	bool Actor::Write(const rapidjson::Value& value) const
+	{
+		return false;
+	}
+
+	bool Actor::Read(const rapidjson::Value& value)
+	{
+		READ_DATA(value, tag);
+		READ_DATA(value, name);
+		READ_DATA(value, active);
+
+		m_transform.Read(value["transform"]);
+
+		if (value.HasMember("components") && value["components"].IsArray())
+		{
+			for (auto& componentValue : value["components"].GetArray())
+			{
+				std::string type;
+				READ_DATA(componentValue, type);
+
+				auto component = Factory::Instance().Create<Component>(type);
+				if (component) 
+				{
+					component->Read(componentValue);
+					AddComponent(std::move(component));
+				}
+			}
+		}
+
+		return true;
 	}
 
 }

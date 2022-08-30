@@ -7,9 +7,8 @@ namespace anthemum
 	Time g_time;
 	AudioSystem g_audioSystem;
 	ResourceManager g_resourceManager;
-
-
-
+	PhysicsSystem g_physicsSystem;
+	EventManager g_eventManager;
 
 	void Engine::Register()
 	{
@@ -18,6 +17,10 @@ namespace anthemum
 		REGISTER_CLASS(ModelComponent);
 		REGISTER_CLASS(PlayerComponent);
 		REGISTER_CLASS(SpriteComponent);
+		REGISTER_CLASS(SpriteAnimComponent);
+		REGISTER_CLASS(CollisionComponent);
 		REGISTER_CLASS(PhysicsComponent);
+		REGISTER_CLASS(TextComponent);
+		REGISTER_CLASS(TilemapComponent);
 	}
 }
