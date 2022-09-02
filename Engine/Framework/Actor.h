@@ -61,6 +61,8 @@ namespace anthemum
 		std::string name;
 		std::string tag;
 
+		float lifespan = 0;
+
 		bool active = true;
 
 		bool m_destroy = false;

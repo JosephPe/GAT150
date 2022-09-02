@@ -91,7 +91,7 @@ namespace anthemum::json
 
         for (rapidjson::SizeType i = 0; i < array.Size(); i++)
         {
-            if (!array[i].IsFloat())
+            if (!array[i].IsNumber())
             {
                 LOG("Error reading json data %s", name.c_str());
                 return false;

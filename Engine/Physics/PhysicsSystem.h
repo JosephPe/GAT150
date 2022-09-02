@@ -21,7 +21,7 @@ namespace anthemum
 		{
 			float gravity_scale = 1;
 			bool constrain_angle = false;
-			bool is_dynamic = false;
+			bool is_dynamic = true;
 		};
 		struct CollisionData
 		{
@@ -45,6 +45,7 @@ namespace anthemum
 		void DestroyBody(b2Body* body);
 
 		void SetCollisionBox(b2Body* body, const CollisionData& data, Actor* actor = nullptr);
+		void SetCollisionBoxStatic(b2Body* body, const CollisionData& data, Actor* actor = nullptr);
 		
 		static Vector2 WorldToScreen(const Vector2& world) { return world * pixelsPerUnit; }
 		static Vector2 ScreenToWorld(const Vector2& screen) { return screen * (1.0f / pixelsPerUnit); }

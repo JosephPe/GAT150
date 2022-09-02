@@ -38,6 +38,7 @@ namespace anthemum
 	{
 		rows[0] = row1;
 		rows[1] = row2;
+		rows[2] = row3;
 	}
 
 	inline Vector2 Matrix3_3::operator * (const Vector2& v) const
@@ -140,6 +141,6 @@ namespace anthemum
 		Vector2 x = { rows[0][0], rows[0][1] };
 		Vector2 y = { rows[1][0], rows[1][1] };
 
-		return Vector2();
+		return Vector2{ x.Length(), y.Length() };
 	}
 };

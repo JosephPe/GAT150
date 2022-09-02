@@ -20,7 +20,9 @@ namespace anthemum
 		REGISTER_CLASS(SpriteAnimComponent);
 		REGISTER_CLASS(CollisionComponent);
 		REGISTER_CLASS(PhysicsComponent);
+		REGISTER_CLASS(RBPhysicsComponent);
 		REGISTER_CLASS(TextComponent);
 		REGISTER_CLASS(TilemapComponent);
+		REGISTER_CLASS(CameraComponent);
 	}
 }

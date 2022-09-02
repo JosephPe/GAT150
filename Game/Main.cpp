@@ -46,34 +46,6 @@ int main()
 		//component->m_model = anthemum::g_resourceManager.Get<anthemum::Model>("models/player.txt");
 
 
-	//std::string str;
-	//anthemum::json::Get(document, "string", str);
-	//std::cout << str << std::endl;
-
-	//bool b;
-	//anthemum::json::Get(document, "boolean", b);
-	//std::cout << b << std::endl;
-
-	//int i1;
-	//anthemum::json::Get(document, "integer1", i1);
-	//std::cout << i1 << std::endl;
-
-	//int i2;
-	//anthemum::json::Get(document, "integer2", i2);
-	//std::cout << i2 << std::endl;
-
-	//float f;
-	//anthemum::json::Get(document, "float", f);
-	//std::cout << f << std::endl;
-
-	//anthemum::Vector2 v2;
-	//anthemum::json::Get(document, "vector2", v2);
-	//std::cout << v2 << std::endl;
-
-	//anthemum::Color color;
-	//anthemum::json::Get(document, "color", color);
-	//std::cout << color << std::endl;
-
 	anthemum::g_renderer.Initialize();
 	anthemum::g_inputSystem.Initialize();
 	anthemum::g_audioSystem.Initialize();
@@ -85,7 +57,7 @@ int main()
 
 	// create window
 	anthemum::g_renderer.CreateWindow("Neumont", 800, 600);
-	anthemum::g_renderer.SetClearColor(anthemum::Color{ 255, 255, 255, 255 });
+	anthemum::g_renderer.SetClearColor(anthemum::Color{ 0, 0, 0, 255 });
 
 	std::unique_ptr<ThisGame> game = std::make_unique<ThisGame>();
 	game->Initialize();

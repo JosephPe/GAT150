@@ -3,7 +3,7 @@
 
 namespace anthemum
 {
-	RBPHysicsComponent::~RBPHysicsComponent()
+	RBPhysicsComponent::~RBPhysicsComponent()
 	{
 		if (m_body)
 		{
@@ -11,31 +11,33 @@ namespace anthemum
 		}
 	}
 
-	void RBPHysicsComponent::Initialize()
+	void RBPhysicsComponent::Initialize()
 	{
 		m_body = g_physicsSystem.CreateBody(m_owner->m_transform.position, m_owner-> m_transform.rotation, data);
 		m_body->SetGravityScale(data.gravity_scale);
 		m_body->SetLinearDamping(damping);
 	}
 
-	void RBPHysicsComponent::Update()
+	void RBPhysicsComponent::Update()
 	{
 		Vector2 position = B2VEC2_TO_VECTOR2(m_body->GetPosition());
 		m_owner->m_transform.position = PhysicsSystem::WorldToScreen(position);
-		m_owner->m_transform.rotation = m_body->GetAngle();
+		m_owner->m_transform.rotation = math::RadToDeg(m_body->GetAngle());
+
+		velocity = B2VEC2_TO_VECTOR2(m_body->GetLinearVelocity());
 	}
 
-	void RBPHysicsComponent::ApplyForce(const Vector2 force)
+	void RBPhysicsComponent::ApplyForce(const Vector2 force)
 	{
 		m_body->ApplyForceToCenter(VECTOR2_TO_B2VEC2(force), true);
 	}
 
-	bool RBPHysicsComponent::Write(const rapidjson::Value& value) const
+	bool RBPhysicsComponent::Write(const rapidjson::Value& value) const
 	{
 		return true;
 	}
 
-	bool RBPHysicsComponent::Read(const rapidjson::Value& value)
+	bool RBPhysicsComponent::Read(const rapidjson::Value& value)
 	{
 		PhysicsComponent::Read(value);
 

@@ -7,7 +7,9 @@ namespace anthemum
 {
 	void Scene::Initialize()
 	{
+		for (auto& actor : m_actors) { actor->Initialize(); }
 	}
+
 	void anthemum::Scene::Update()
 	{
 

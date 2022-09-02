@@ -31,6 +31,8 @@ namespace anthemum
 
 	private:
 		PhysicsSystem::CollisionData data;
+		Vector2 scale_offset = Vector2{ 1, 1 };
+
 		functionPTR m_enterFunction;
 		functionPTR m_exitFunction;
 	};

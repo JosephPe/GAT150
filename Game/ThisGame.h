@@ -2,7 +2,7 @@
 #include "Framework/Game.h"
 #include "Framework/Event.h"
 
-class ThisGame : public anthemum::Game
+class ThisGame : public anthemum::Game, public anthemum::INotify
 {
 public:
 	enum class gameState
@@ -26,4 +26,7 @@ private:
 	gameState m_gameState = gameState::titleScreen;
 	float m_stateTimer = 3;
 	int m_lives = 3;
+
+	// Inherited via INotify
+	virtual void OnNotify(const anthemum::Event& event) override;
 };

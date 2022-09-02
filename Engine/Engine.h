@@ -5,6 +5,7 @@
 #include "Math/Vector2.h"
 #include "Math/MathUtils.h"
 #include "Math/ModelComponent.h"
+#include "Renderer/Random.h"
 
 #include "Framework/Game.h"
 #include "Framework/Scene.h"
@@ -39,6 +40,8 @@
 #include "Components/SpritesAnimComponent.h"
 #include "Components/TextComponent.h"
 #include "Components/TilemapComponent.h"
+#include "Components/CharacterComponent.h"
+#include "Components/CameraComponent.h"
 
 #include <memory>
 #include <variant>

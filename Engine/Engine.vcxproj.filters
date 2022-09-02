@@ -155,6 +155,12 @@
     <ClCompile Include="Framework\EventManager.cpp">
       <Filter>Sources\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Components\CharacterComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CameraComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\MathUtils.h">
@@ -174,9 +180,6 @@
     </ClInclude>
     <ClInclude Include="Math\Color.h">
       <Filter>Sources\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Input\InputSystem.h">
-      <Filter>Sources\Input</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\Model.h">
       <Filter>Sources\Renderer</Filter>
@@ -303,6 +306,15 @@
     </ClInclude>
     <ClInclude Include="Framework\EventManager.h">
       <Filter>Sources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CharacterComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputSystem.h">
+      <Filter>Sources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CameraComponent.h">
+      <Filter>Sources\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

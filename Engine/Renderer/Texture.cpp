@@ -34,7 +34,7 @@ namespace anthemum
 		m_texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
 		SDL_FreeSurface(surface);
 
-		if (m_texture = nullptr)
+		if (m_texture == nullptr)
 		{
 			LOG(SDL_GetError());
 			return false;

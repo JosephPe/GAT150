@@ -1,4 +1,5 @@
 #include "Renderer/Renderer.h"
+#include "Math/Vector2.h"
 #include "Math/Transform.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -13,6 +14,9 @@ namespace anthemum
 		SDL_Init(SDL_INIT_VIDEO);
 		TTF_Init();
 		IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
+
+		m_view = Matrix3_3::identity;
+		m_viewport = Matrix3_3::identity;
 	}
 	void Renderer::Shutdown()
 	{
@@ -79,13 +83,15 @@ namespace anthemum
 		SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, transform.rotation, &center, SDL_FLIP_NONE);
 	}
 
-	void Renderer::Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& registration)
+	void Renderer::Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& registration, bool flipH)
 	{
-		Vector2 size = Vector2{ source.w, source.h };
-		size = size * transform.scale;
+		Matrix3_3 mx = m_viewport * m_view * transform.matrix;
 
-		Vector2 origin = size * registration;
-		Vector2 tposition = transform.position - origin;
+		Vector2 size = Vector2{ source.w, source.h };
+		size = size * mx.GetScale();
+
+		Vector2 origin = (size * registration);
+		Vector2 tposition = mx.GetTranslation() - origin;
 
 		SDL_Rect dest;
 		dest.x = (int)(tposition.x);
@@ -95,13 +101,14 @@ namespace anthemum
 
 		SDL_Rect src;
 		src.x = source.x;
-		src.x = source.y;
-		src.x = source.w;
-		src.x = source.h;
+		src.y = source.y;
+		src.w = source.w;
+		src.h = source.h;
 
 		SDL_Point center{ (int)origin.x, (int)origin.y };
 
-		SDL_RenderCopyEx(m_renderer, texture->m_texture, &src, &dest, transform.rotation, &center, SDL_FLIP_NONE);
+		SDL_RendererFlip flip = (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
+		SDL_RenderCopyEx(m_renderer, texture->m_texture, &src, &dest, transform.rotation, &center, flip);
 	}
 
 	void Renderer::DrawLine(float x1, float y1, float x2, float y2)

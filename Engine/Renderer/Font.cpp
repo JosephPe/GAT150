@@ -21,7 +21,9 @@ namespace anthemum
 
 	bool Font::Create(std::string filename, ...)
 	{
-		return false;
+		m_ttfFont = TTF_OpenFont(filename.c_str(), 16);
+
+		return true;
 	}
 
 	void Font::Load(const std::string& filename, int fontSize)

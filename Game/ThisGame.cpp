@@ -1,13 +1,16 @@
 #include "ThisGame.h"
+#include "GameComponents/EnemyComponent.h"
 #include "Engine.h"
 
 void ThisGame::Initialize()
 {
+	REGISTER_CLASS(EnemyComponent);
+
 	m_scene = std::make_unique<anthemum::Scene>();
 
 	rapidjson::Document document;
 
-	std::vector<std::string> sceneNames = { "scenes/prefabs.txt"," scenes / tilemap.txt"," scenes/level.txt" };
+	std::vector<std::string> sceneNames = { "Scenes/Prefabs.txt","Scenes/TileMap.txt","Scenes/level.txt" };
 	for (auto sceneName : sceneNames)
 	{
 		bool success = anthemum::json::Load(sceneName, document);
@@ -55,14 +58,36 @@ void ThisGame::Update()
 			for (int i = 0; i < 10; i++)
 			{
 				auto actor = anthemum::Factory::Instance().Create<anthemum::Actor>("Coin");
-				actor->m_transform.position = { 600, 100 };
+				actor->m_transform.position = { anthemum::randomf(800), 100.0f };
 				actor->Initialize();
 
 				m_scene->Add(std::move(actor));
 			}
+			//for (int i = 0; i < 3; i++)
+			//{
+			//	auto actor = anthemum::Factory::Instance().Create<anthemum::Actor>("Ghost");
+			//	actor->m_transform.position = { 600, 100 };
+			//	actor->Initialize();
+
+			//	m_scene->Add(std::move(actor));
+			//}
 			m_gameState = gameState::game;
 			break;
 	case ThisGame::gameState::game:
+	{
+		//auto actor = m_scene->GetActorFromName("Score");
+		//auto component = actor->GetComponent<anthemum::TextComponent>();
+		//component->SetText(std::to_string(m_score));
+
+		//auto actor = m_scene->GetActorFromName("Health");
+		//auto component = actor->GetComponent<anthemum::TextComponent>();
+
+		//auto player = m_scene->GetActorFromName("Player");
+		//auto playerComponent = player->GetComponent<anthemum::PlayerComponent>();
+		//playerComponent->SetText(std::to_string((int)playerComponent->health));
+	}
+
+
 			break;
 	case ThisGame::gameState::playerDead:
 		m_stateTimer -= anthemum::g_time.deltaTime;
@@ -91,4 +116,8 @@ void ThisGame::OnPlayerDead(const anthemum::Event& event)
 {
 	m_gameState = gameState::playerDead;
 	m_lives = 0;
+}
+
+void ThisGame::OnNotify(const anthemum::Event& event)
+{
 }

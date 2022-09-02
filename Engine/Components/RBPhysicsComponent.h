@@ -4,13 +4,13 @@
 
 namespace anthemum
 {
-	class RBPHysicsComponent : public PhysicsComponent
+	class RBPhysicsComponent : public PhysicsComponent
 	{
 	public:
-		RBPHysicsComponent() = default;
-		~RBPHysicsComponent();
+		RBPhysicsComponent() = default;
+		~RBPhysicsComponent();
 
-		CLASS_DECLARATION(RBPHysicsComponent)
+		CLASS_DECLARATION(RBPhysicsComponent)
 
 		void Initialize() override;
 
